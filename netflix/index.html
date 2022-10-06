@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body,html       {background-color: #111;color:white}
+        ul              {list-style: none;margin: 0;padding: 0;}
+        .covers         {display: flex;column-gap: 10px;width: 100%;padding: 1rem;box-sizing: border-box;}
+        .covers img     {width: 100%;}
+        .covers > li    {flex-grow: 1;}
+        .covers > li:hover   {animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;}
+
+        .boxInfo        {font-size: clamp(0.7rem,2vw,1.5rem);font-family: Tahoma, Geneva, Verdana, sans-serif;font-weight: normal;line-height: 1.2em;animation: fadeIn 1s;}
+
+        @keyframes scale-up-center { 0% { transform: scale(1); } 100% { transform: scale(1.05); } }
+        @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+
+   </style>
+</head>
+<body>
+    <div id="reactDOM"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone@7.19.3/babel.min.js"></script>
+    <script src="modules/module.js" type="text/babel"></script>
+
+    <script type="text/babel">
+        const domContainer = document.querySelector('#reactDOM');
+        const root = ReactDOM.createRoot(domContainer);
+        const coversArray = [
+            {
+                id: 1,
+                name: "Cobra Kai",
+                year: 2020,
+                art: "https://occ-0-6100-358.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABSW61M9eIP0QA0guvpo4v8E3ZafLeATuD9LcFpeRHTIj0a_5AvY6ljelN8mTvqESSzmnYbJefB4l-yGxn3py3Ka2FVlrHLm351oA1aLLg1dVu89w_6nuy7VkIhtxv9Wo2WI-fn9EedjGZ-WC9AFd5qyP5QKegkioWnplJKXnaqkcennQHxhBNQPmbksTmwKB2eG1Twp372FLWDDkngc-n3iqOHiKbI13LUKUt6_n0UdAfM93o8uWWTXZQxtHTHzgQbWgH4zlC4EbHPJugRvzWCqE3HpI4ldMNJkONdlrXhwjucMM7w1X_6QibqeTSyWikWU0t1TrUHchc6lZPYImU39hHQ.jpg?r=661",
+            },
+            {
+                id: 2,
+                name: "Dahmer",
+                year: 2022,
+                art: "https://occ-0-6100-358.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABbtyJgooGA8csQjgRnqNccwLTXXdU1PFck2DlHAGUxKVIpSBtCxB8SHfYLQr9JHvAjnhbxT-RykE56AFTjQ6qdF8ueg4hSE5rO8mLhW8XEDP4eUUA5wEKJ7SSLG8mvw5JImkJgbZlS51P18ij--5vdnN7U-Kyyls8IktY4_hVjveIOt_ESl3SaD2NYBxJnA.jpg?r=109"
+            },
+            {
+                id: 3,
+                name: "CyberPunk Coderunners",
+                year: 2022,
+                art: "https://occ-0-6100-358.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABZG0IwMqNIrRADP13Snmwh5L583boa0kuNJP-m5PCIr-8YvU8sAhb84NLutcJn2zbpxzN6mNs_m9x2aehfmQUMacfDh4E2XUXL8z-fFTToPHsm3NRpKEU67AKGDbuELQ1p-1.jpg?r=2a9"
+            },
+            {
+                id: 4,
+                name: "Los Imperfectos",
+                year: 2022,
+                art: "https://occ-0-6100-358.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABe6zqxwxkM4gBz6IpHSHje81daJNosgYK53BGECWVGMgRZsEQboCy4gADykqAEtIODjlsSwbY1LxjgfWjq3JtEdovbw0NBsh_QCpLXyxVpzKKjqgwVLdIHLSG4CP6Y65VTiY.jpg?r=598"
+            }
+        ]
+        root.render(<CoverList coversArray={coversArray}/>)
+
+
+
+    </script>
+</body>
+</html>
