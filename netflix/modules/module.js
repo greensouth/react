@@ -1,11 +1,38 @@
-function CoverList(props){
-    const covers = props.coversArray;
-    const listItems = covers.map((coverItem) => <li key={coverItem.id}><Cover cover={coverItem}/></li>)
-    return(
-        <ul className="covers">
-            {listItems}
-        </ul>
-    );   
+class CoverList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            covers: null
+        }
+        this.fetch = this.fetch.bind(this);
+
+    }
+    componentDidMount(){
+        this.fetch();
+    }
+    
+    fetch(){
+        fetch(`backend/showinfo.php?covers`)
+        .then((res) => res.json())
+        .then((json) => {
+                this.setState((state) => ({
+                    covers: json
+                }))
+        })
+        .catch((e) => {
+            console.log(`Error fetching ${e}`)
+        })
+    }
+    render(){
+        if(this.state.covers){
+            const listItems = this.state.covers.map((coverItem) => <li key={coverItem.id}><Cover cover={coverItem}/></li>)
+            return (
+            <ul className="covers">
+                {listItems}
+            </ul>
+            )
+        }
+    };   
 }
 
 
@@ -28,7 +55,9 @@ class Cover extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {opened: false}
+        this.state = {
+            opened: false,
+        }
         this.handleShowInfo = this.handleShowInfo.bind(this);
         this.handleHideInfo = this.handleHideInfo.bind(this);
 
@@ -44,9 +73,8 @@ class Cover extends React.Component {
             opened: false
         }));
     }   
-    retrieveInfoFor(showID){
 
-    }
+   
 
     render(){
         return (
@@ -135,7 +163,7 @@ class BoxInfo extends React.Component{
     render(){
        if(this.state.data){
             return (
-                <BoxInfo_nav userInfo = {this.state.data.userInfo} show = {this.state.data.show}/>
+                <BoxInfo_nav userInfo = {this.state.data.userInfo} show = {this.state.data.show} episode = {this.state.data.episode}/>
             );
         }
     }
@@ -144,14 +172,14 @@ function BoxInfo_nav(props){
     //userInfoObj, showName
     const logo          = props?.show?.thumbs?.logo ?? null;
     const showName      = props?.show?.name ?? "";
-    const length        = props?.show?.length ?? 1;
+    const length        = props?.episode?.length ?? 1;
     const rating        = props?.userInfo?.rating ?? null;
     const following     = props?.userInfo?.following ?? false;
     const ellapsed      = props?.userInfo?.ellapsed ?? 0;
     const coincidence   = props?.userInfo?.coincidence ?? 0;
     return(
         <div className="boxInfo_nav">
-            {logo != null ? <img src={logo} alt=""/> : <p>{showName}</p>}
+            {logo != null ? <img src={logo} alt="" className="boxInfo_logo"/> : <p>{showName}</p>}
             <TimeLine total={length} played={ellapsed}/>
         </div>
     )
