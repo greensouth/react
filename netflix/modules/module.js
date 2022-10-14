@@ -1,3 +1,5 @@
+
+
 class CoverList extends React.Component {
     constructor(props) {
         super(props);
@@ -27,9 +29,12 @@ class CoverList extends React.Component {
         if(this.state.covers){
             const listItems = this.state.covers.map((coverItem) => <li key={coverItem.id}><Cover cover={coverItem}/></li>)
             return (
-            <ul className="covers">
-                {listItems}
-            </ul>
+            <div>
+                <Modal><h1>Holi este es mi modal</h1></Modal>
+                <ul className="covers">
+                    {listItems}
+                </ul>
+            </div>
             )
         }
     };   
@@ -73,8 +78,6 @@ class Cover extends React.Component {
             opened: false
         }));
     }   
-
-   
 
     render(){
         return (
