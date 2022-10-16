@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+
+   </style>
+</head>
+<body>
+    <div id="reactDOM"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone@7.19.3/babel.min.js"></script>
+    <script src="modules/module.js" type="text/babel"></script>
+
+    <script type="text/babel">
+        const domContainer = document.querySelector('#reactDOM');
+        const root = ReactDOM.createRoot(domContainer);   
+        const data = [
+            {category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football"},
+            {category: "Sporting Goods", price: "$9.99", stocked: true, name: "Baseball"},
+            {category: "Sporting Goods", price: "$29.99", stocked: false, name: "Basketball"},
+            {category: "Electronics", price: "$99.99", stocked: true, name: "iPod Touch"},
+            {category: "Electronics", price: "$399.99", stocked: false, name: "iPhone 5"},
+            {category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 7"}
+        ];
+        root.render(<ProductTable data={data}/>)
+    </script>
+</body>
+</html>
