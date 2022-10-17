@@ -192,7 +192,7 @@ function TimeLine(props){
     const total = props.total;
     const played = props.played;
     return(
-        <label>
+        <label className="timeline">
             <progress max={total} value={played}> {(100*played)/total}% </progress> {played} de {total} min
         </label>
     )
