@@ -5,12 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test:watch":"jest --watchAll"
+    "test:watch": "jest --watchAll"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "jest": "^29.3.1"
-  }
+  "license": "ISC"
 }
