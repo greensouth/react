@@ -1,5 +1,9 @@
 import './App.css';
-import './components/card.jsx';
+import React from 'react';
+import {Card} from './components/card.jsx';
+
+
+
 function App() {
 
   const dataGames = [
@@ -12,7 +16,9 @@ function App() {
   return (
     <div className="App">
       <h1>holi!</h1>
-      <Card name={dataGames[0].name} thumb={dataGames[0].thumb} url={dataGames[0].url}/>
+      <ul>
+      <Card card={dataGames[0]}/>
+      </ul>
     </div>
   );
 }
