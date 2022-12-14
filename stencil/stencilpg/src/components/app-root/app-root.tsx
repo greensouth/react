@@ -1,4 +1,17 @@
-import { Component, h } from '@stencil/core';
+import { Component, State, h } from '@stencil/core';
+
+
+/* const content = [
+  {
+    name:   "Antonio Pérez",
+    avatar: "https://placebeard.it/250/250"
+  },
+  {
+    name:   "Manuela Martínez",
+    avatar: "https://placebeard.it/250/250"
+  }
+]
+ */
 
 @Component({
   tag: 'app-root',
@@ -6,15 +19,25 @@ import { Component, h } from '@stencil/core';
   shadow: true,
 })
 export class AppRoot {
+  @State() content = [];
+
+  fetchData = async () => {
+    await fetch('https://swapi.dev/api/planets/?format=json').then( (response) => response.json()).then( (result) => { console.log(result);this.content = result.results;})
+  }
+
+  componentWillLoad = () => {
+    this.fetchData();
+  }
+
   render() {
     return (
       <div>
-        <header>
+{/*         <header>
           <h1>Stencil App Starter</h1>
-        </header>
+        </header> */}
 
         <main>
-          <test-list items={["holi","caracoli"]}></test-list>
+          <test-list items={this.content}></test-list>
         </main>
       </div>
     );

@@ -8,8 +8,13 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface AppRoot {
     }
+    interface AvatarComponent {
+        "avatarURL": string;
+        "size": string;
+    }
     interface TestList {
         "items": any[];
+        "searchTerm": string;
     }
 }
 declare global {
@@ -19,6 +24,12 @@ declare global {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
     };
+    interface HTMLAvatarComponentElement extends Components.AvatarComponent, HTMLStencilElement {
+    }
+    var HTMLAvatarComponentElement: {
+        prototype: HTMLAvatarComponentElement;
+        new (): HTMLAvatarComponentElement;
+    };
     interface HTMLTestListElement extends Components.TestList, HTMLStencilElement {
     }
     var HTMLTestListElement: {
@@ -27,17 +38,24 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "app-root": HTMLAppRootElement;
+        "avatar-component": HTMLAvatarComponentElement;
         "test-list": HTMLTestListElement;
     }
 }
 declare namespace LocalJSX {
     interface AppRoot {
     }
+    interface AvatarComponent {
+        "avatarURL"?: string;
+        "size"?: string;
+    }
     interface TestList {
         "items"?: any[];
+        "searchTerm"?: string;
     }
     interface IntrinsicElements {
         "app-root": AppRoot;
+        "avatar-component": AvatarComponent;
         "test-list": TestList;
     }
 }
@@ -46,6 +64,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "avatar-component": LocalJSX.AvatarComponent & JSXBase.HTMLAttributes<HTMLAvatarComponentElement>;
             "test-list": LocalJSX.TestList & JSXBase.HTMLAttributes<HTMLTestListElement>;
         }
     }

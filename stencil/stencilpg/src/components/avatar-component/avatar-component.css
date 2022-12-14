@@ -1,0 +1,8 @@
+:host {
+  display: block;
+}
+
+img {
+  clip-path: circle(50% at 50% 50%);
+  object-fit: cover;
+}
