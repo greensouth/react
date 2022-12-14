@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@stencil/core": "^3.0.0-alpha.2",
+    "stencil": "^0.0.5"
+  }
+}
