@@ -20,14 +20,20 @@ import { Component, State, h } from '@stencil/core';
 })
 export class AppRoot {
   @State() content = [];
+  @State() loading: boolean = true;
+
+
 
   fetchData = async () => {
-    await fetch('https://swapi.dev/api/planets/?format=json').then( (response) => response.json()).then( (result) => { console.log(result);this.content = result.results;})
+    this.loading = true;
+    await fetch('https://swapi.dev/api/planets/?format=json').then( (response) => response.json()).then( (result) => { console.log(result);this.content = result.results;this.loading = false})
   }
 
   componentWillLoad = () => {
     this.fetchData();
   }
+
+
 
   render() {
     return (
@@ -37,7 +43,7 @@ export class AppRoot {
         </header> */}
 
         <main>
-          <test-list items={this.content}></test-list>
+          <test-list items={this.content} loading={this.loading}></test-list>
         </main>
       </div>
     );

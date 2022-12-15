@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'test-component',
@@ -7,16 +7,23 @@ import { Component, h, Prop } from '@stencil/core';
 })
 export class TestComponent {
   @Prop() items: [];
+  @State() loading = false;
 
   render() {
-    console.log(this.items)
+    console.log(this.loading)
     return (
       <fragment>
         {this.items}
       <h1>Testing component</h1>
-      <ul>
-        {this.items.map( (elem) => <li>{elem}</li>)}
-      </ul>
+      {this.loading
+      ?
+        <p>...loading items...</p>
+      :
+        <ul>
+          {this.items.map( (elem) => <li>{elem}</li>)}
+        </ul>
+      }
+
       </fragment>
     );
   }

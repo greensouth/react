@@ -10,10 +10,12 @@ export namespace Components {
     }
     interface AvatarComponent {
         "avatarURL": string;
+        "refreshAvatar": () => Promise<void>;
         "size": string;
     }
     interface TestList {
         "items": any[];
+        "loading": boolean;
         "searchTerm": string;
     }
 }
@@ -51,6 +53,7 @@ declare namespace LocalJSX {
     }
     interface TestList {
         "items"?: any[];
+        "loading"?: boolean;
         "searchTerm"?: string;
     }
     interface IntrinsicElements {
